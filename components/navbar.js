@@ -4,7 +4,7 @@ app.component('nav-bar', {
     `<div class="nav">
         <ul>
             <li><a href="">Home</a></li>
-            <li><a href="">Not home</a></li>
+            <li><a href="">Bubble sort</a></li>
         </ul>
     </div>`
 })
