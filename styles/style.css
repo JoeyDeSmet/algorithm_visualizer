@@ -1,0 +1,27 @@
+.nav ul {
+    background: linear-gradient(-90deg, #b0e0e6, #4ca3dd);
+    height: 60px;
+
+    -webkit-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.57);
+
+    list-style-type: none;
+}
+
+.nav ul li {
+    display: table;
+    border-spacing: 5px;
+    height: 100%;
+    width: fit-content;
+    float: left;
+}
+
+.nav ul li a {
+    display: table-cell;
+    vertical-align: middle;
+    text-decoration: none;
+    color:white;
+    font-weight: 200;
+    font-size: large;
+}
