@@ -4,13 +4,12 @@ app.component('bubble-sort', {
     `
     <div class="bubble">
         <div class="graph">
-            <div v-if="!sorting" v-for="(elments, index) in array" :style="{ height: 10 * array[index] + 'px', width: 50 + 'px' ,'background-color': '#4e4e4e' }"></div>
+            <div v-if="!sorting" v-for="(elments, index) in array" :style="{ height: 10 * array[index] + 'px', width: 50 + 'px' ,'background-color': '#4e4e4e', 'border-width' : 0.5 + 'px', 'border-color' : 'black', 'border-style' : 'solid' }"></div>
             <div v-else v-for="(elments, index) in toSortArray" 
-            :style="index == selected.index ? { height: 10 * array[index] + 'px', width: 50 + 'px', 'background-color' : 'red'}
-            : { height: 10 * array[index] + 'px', width: 50 + 'px', 'background-color' : '#4e4e4e'}">
+            :style="index == selected.index ? { height: 10 * array[index] + 'px', width: 50 + 'px', 'background-color' : 'red', 'border-width' : 0.5 + 'px', 'border-color' : 'black', 'border-style' : 'solid'}
+            : { height: 10 * array[index] + 'px', width: 50 + 'px', 'background-color' : '#4e4e4e', 'border-width' : 0.5 + 'px', 'border-color' : 'black', 'border-style' : 'solid'}">
             </div>
         </div>
-
         <div class="options">
             <div>
                 <label for="number">Elements in array</label>
@@ -61,7 +60,7 @@ app.component('bubble-sort', {
             this.sorting = false
         },
         stop() {
-            this.sorting = false  
+            this.sorting = false
         }
     },
     computed: {
