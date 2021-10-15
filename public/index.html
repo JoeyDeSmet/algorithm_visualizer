@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Landing Page</title>
+    <title>Algorithm visualizer</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +11,14 @@
 </head>
 <body>
     <div id="app">
-        <nav-bar></nav-bar>
-        <bubble-sort></bubble-sort>
+        <nav-bar @page-change="ChangePage"></nav-bar>
+        <home v-if="active_page == 'Home'"></home>
+        <bubble-sort v-if="active_page == 'Bubble'"></bubble-sort>
     </div>
-    
+
     <script src="../src/index.js"></script>
 
+    <script src="../components/home.js"></script>
     <script src="../components/navbar.js"></script>
     <script src="../components/bubble_sort_visual.js"></script>
 

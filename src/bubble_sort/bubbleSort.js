@@ -3,26 +3,18 @@ function sleep(ms) {
 }
 
 async function sort(array) {
-    let copy = array
-
-    for(var i = 0; i < copy.length; i++){
+    for(var i = 0; i < array.length; i++){
         let swaped = false
-        for(var j = 0; j < copy.length - 1 - i; j++) {
-            // Return pointer
-            console.log(j)
-            await sleep(500)
-            if (copy[j] > copy[j + 1]) {
-                // Return two that swap
-                console.log(`${copy[j]} > ${copy[j + 1]} `)
+        for(var j = 0; j < array.length - 1 - i; j++) {
+            await sleep(200)
+            if (array[j] > array[j + 1]) {
                 swaped = true
-                let temp = copy[j]
-                copy[j] = copy[j + 1]
-                copy[j + 1] = temp
+                let temp = array[j]
+                array[j] = array[j + 1]
+                array[j + 1] = temp
             }
-            await sleep(500)
+            await sleep(200)
         }
         if (!swaped) break;
     }
-
-    return copy
 }

@@ -3,8 +3,16 @@ app.component('nav-bar', {
     /*html*/
     `<div class="nav">
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Bubble sort</a></li>
+            <li><a @click="Home">Home</a></li>
+            <li><a @click="Bubble">Bubble sort</a></li>
         </ul>
-    </div>`
+    </div>`,
+    methods: {
+        Home() {
+            this.$emit('page-change',  "Home")
+        },
+        Bubble() {
+            this.$emit('page-change', "Bubble")
+        }
+    }
 })

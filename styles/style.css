@@ -1,3 +1,15 @@
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.graph {
+    display: flex;
+    justify-content: center;
+}
+
 .nav ul {
     background: linear-gradient(-90deg, #b0e0e6, #4ca3dd);
     height: 60px;
@@ -5,6 +17,9 @@
     -webkit-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.57);
+
+    margin-bottom: 0px;
+    z-index: 10;
 
     list-style-type: none;
 }
@@ -24,6 +39,7 @@
     color:white;
     font-weight: 200;
     font-size: large;
+    cursor: pointer;
 }
 
 .options {
