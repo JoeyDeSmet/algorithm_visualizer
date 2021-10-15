@@ -45,6 +45,8 @@
 .options {
     display: table;
     border-spacing: 10px;
+    bottom: 0;
+    position: fixed;
 }
 
 .options div {

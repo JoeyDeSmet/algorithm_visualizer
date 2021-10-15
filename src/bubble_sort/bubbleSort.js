@@ -6,7 +6,7 @@ async function sort(array, selected) {
     for(var i = 0; i < array.length; i++){
         let swaped = false
         for(var j = 0; j < array.length - 1 - i; j++) {
-            await sleep(200)
+            await sleep(100)
             selected.index = j + 1
             if (array[j] > array[j + 1]) {
                 swaped = true
@@ -14,7 +14,7 @@ async function sort(array, selected) {
                 array[j] = array[j + 1]
                 array[j + 1] = temp
             }
-            await sleep(200)
+            await sleep(100)
         }
         if (!swaped) break;
     }

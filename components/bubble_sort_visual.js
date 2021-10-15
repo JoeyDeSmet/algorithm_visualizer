@@ -39,6 +39,7 @@ app.component('bubble-sort', {
                 <button class="button"
                 @click="stop">Stop</button>
             </div>
+
         </div>
     </div>
     `,
@@ -60,14 +61,14 @@ app.component('bubble-sort', {
             this.sorting = false
         },
         stop() {
-            this.sorting = false
+            this.sorting = false  
         }
     },
     computed: {
         array() {
             let tmp = []
             for (var i = 0; i < this.number; i++) {
-                tmp.push(Math.floor(Math.random() * 50))
+                tmp.push(Math.floor(Math.random() * 50) + 1)
             }
             this.toSortArray = tmp
             return tmp
