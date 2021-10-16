@@ -7,14 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../styles/style.css" rel="stylesheet">
     <script src="../src/vue/vue.global.js"></script>
-    <script src="../src/algorithms/bubbleSort.js"></script>
-    <script src="../src/algorithms/mergeSort.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav-bar @page-change="ChangePage"></nav-bar>
+        <navbar @page-change="ChangePage"></navbar>
         <home v-if="active_page == 'Home'"></home>
-        <bubble-sort v-if="active_page == 'Bubble'"></bubble-sort>
+        <bubblesort v-if="active_page == 'Bubble'" ref="bubbleRef"></bubblesort>
     </div>
 
     <script src="../src/index.js"></script>

@@ -1,4 +1,4 @@
-app.component('bubble-sort', {
+app.component('bubblesort', {
     template:
     /*html*/
     `

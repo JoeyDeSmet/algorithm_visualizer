@@ -1,4 +1,4 @@
-app.component('nav-bar', {
+app.component('navbar', {
     template: 
     /*html*/
     `<div class="nav">

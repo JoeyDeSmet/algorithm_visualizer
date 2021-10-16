@@ -1,3 +1,5 @@
+var sorting = false
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -14,6 +16,7 @@ async function sort(array, selected) {
                 array[j] = array[j + 1]
                 array[j + 1] = temp
             }
+            if (!app._instance.ctx.$refs.bubbleRef.$data.sorting) return
             await sleep(100)
         }
         if (!swaped) break;
