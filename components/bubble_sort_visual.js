@@ -31,7 +31,7 @@ app.component('bubblesort', {
                 
             <div>
                 <button class="button"
-                @click="startSort">Sort!</button>
+                @click="sort(this.toSortArray)">Sort!</button>
             </div>
             
             <div>
@@ -53,10 +53,24 @@ app.component('bubblesort', {
         }
     },
     methods: {
-        async startSort() {
-            if (this.sorting) return
+        async sort(array) {
             this.sorting = true
-            await sort(this.toSortArray, this.selected)
+            for(var i = 0; i < array.length; i++){
+                let swaped = false
+                for(var j = 0; j < array.length - 1 - i; j++) {
+                    await sleep(100)
+                    this.selected.index = j + 1
+                    if (array[j] > array[j + 1]) {
+                        swaped = true
+                        let temp = array[j]
+                        array[j] = array[j + 1]
+                        array[j + 1] = temp
+                    }
+                    if (!this.sorting) return
+                    await sleep(100)
+                }
+                if (!swaped) break;
+            }
             this.sorting = false
         },
         stop() {
@@ -74,3 +88,7 @@ app.component('bubblesort', {
         }
     }
 })
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}

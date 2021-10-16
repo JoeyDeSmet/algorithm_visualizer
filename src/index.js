@@ -9,12 +9,6 @@ const app = Vue.createApp({
         ChangePage(name) {
             this.active_page = name
         },
-        Increment () {
-            this.count++
-        },
-        Test() {
-            return this.count
-        }
     },
 })
 
@@ -29,7 +23,7 @@ function loadScript(url)
 }
 
 // algorithm scrips
-loadScript('../src/algorithms/bubbleSort.js')
+// loadScript('../src/algorithms/bubbleSort.js')
 loadScript('../src/algorithms/mergeSort.js')
 
 // Does not work
