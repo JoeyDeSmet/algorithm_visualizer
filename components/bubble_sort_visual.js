@@ -106,7 +106,3 @@ app.component('bubblesort', {
     </div>
     `,
 })
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
