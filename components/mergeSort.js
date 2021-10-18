@@ -4,7 +4,7 @@ app.component('merge-sort', {
         return {
             number: 100,
             toSortArray: [],
-            sorting: false
+            sorting: false,
         }
     },
 
@@ -21,7 +21,6 @@ app.component('merge-sort', {
             var arrayTwo = []
         
             for (var i = 0; i < middle; i++) {
-                //console.log(i)
                 arrayOne[i] = array[i]
             }
         
@@ -98,7 +97,7 @@ app.component('merge-sort', {
 
         <div class="graph">
             
-            <p>{{ toSortArray }}</p>
+            <p>{{ this.toSortArray }}</p>
 
         </div>
 
