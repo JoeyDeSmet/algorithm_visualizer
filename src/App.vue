@@ -3,6 +3,7 @@
   <Home v-if="this.active_page == 'Home'" />
   <BubbleSort v-if="this.active_page == 'Bubble'" />
   <MergeSort v-if="this.active_page == 'Merge'" />
+  <AStar v-if="this.active_page == 'AStar'" />
 </template>
 
 <script>
@@ -10,6 +11,7 @@ import BubbleSort from "./components/bubble_sort.vue";
 import Home from "./components/home.vue";
 import NavBar from "./components/NavBar.vue";
 import MergeSort from "./components/MergeSort.vue";
+import AStar from "./components/AStar.vue";
 
 export default {
   name: "App",
@@ -18,6 +20,7 @@ export default {
     Home,
     BubbleSort,
     MergeSort,
+    AStar,
   },
 
   data() {
@@ -45,6 +48,10 @@ export default {
 .graph {
   display: flex;
   justify-content: center;
+}
+
+.tile {
+  margin: 0;
 }
 
 .nav ul {
