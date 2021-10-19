@@ -133,10 +133,9 @@ export default {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
   },
+
   beforeMount() {
     this.createArray();
   },
 };
 </script>
-
-<style></style>

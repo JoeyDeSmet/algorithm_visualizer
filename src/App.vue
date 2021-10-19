@@ -1,6 +1,7 @@
 <template>
   <NavBar @page-change="this.ChangePage" />
   <Home v-if="this.active_page == 'Home'" />
+  <!-- <Test /> -->
   <BubbleSort v-if="this.active_page == 'Bubble'" />
   <MergeSort v-if="this.active_page == 'Merge'" />
   <AStar v-if="this.active_page == 'AStar'" />
@@ -12,6 +13,7 @@ import Home from "./components/home.vue";
 import NavBar from "./components/NavBar.vue";
 import MergeSort from "./components/MergeSort.vue";
 import AStar from "./components/AStar.vue";
+// import Test from "./components/test.vue";
 
 export default {
   name: "App",
@@ -21,6 +23,7 @@ export default {
     BubbleSort,
     MergeSort,
     AStar,
+    // Test,
   },
 
   data() {
