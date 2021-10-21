@@ -18,7 +18,8 @@
           :fill="color(tile)"
           :xPos="x"
           :yPos="y"
-          @click="click"
+          @mousedown="click"
+          @mouseover="hover"
         />
       </g>
     </g>
@@ -64,7 +65,7 @@ export default {
     async run() {
       let startAndEndPos = this.getStartAndEndPos();
       var currentTile = startAndEndPos.start;
-      let currentCheapest = this.calculateCost(currentTile);
+      let currentCheapest = this.calculateCost(currentTile, currentTile, {Gcost:0});
 
       let openTiles = [];
 
@@ -75,7 +76,8 @@ export default {
 
       while (
         currentTile.x != startAndEndPos.end.x ||
-        currentTile.y != startAndEndPos.end.y
+        currentTile.y != startAndEndPos.end.y || 
+        openTiles.length == 0
       ) {
         let neighbors = this.claculateNeighbors(currentTile);
 
@@ -86,9 +88,10 @@ export default {
               (e) => e.tile.x === tile.x && e.tile.y === tile.y
             ) &&
             !visited.some((e) => e.tile.x === tile.x && e.tile.y === tile.y) &&
+            this.checkInBounds(tile) &&
             !this.tiles[tile.y][tile.x].wall
           ) {
-            let cost = this.calculateCost(tile);
+            let cost = this.calculateCost(currentTile ,tile, currentCheapest);
             openTiles.push({ tile, cost });
           }
         });
@@ -138,51 +141,55 @@ export default {
         openTiles.splice(index, 1);
 
         // Adding currentCheapest to visited tiles
-        visited.push({tile: currentTile, cost: currentTile});
+        visited.push({tile: currentTile, cost: currentCheapest});
         this.tiles[currentTile.y][currentTile.x].visited = true;
 
         await this.sleep(0);
       }
 
-      
+      console.log(visited);
+
       currentTile = startAndEndPos.end;
-      var secondVisit = [];
+      let cheapestRoute = null;
+      let secondVisit = [];
+      secondVisit.push(currentTile);
 
-      while (currentTile.x != startAndEndPos.start.x || currentTile.y != startAndEndPos.start.y) {
-        let neighbors = this.claculateNeighbors(currentTile);
-        let cheapest = null;
+      while (currentTile.x != startAndEndPos.start.x ||
+        currentTile.y != startAndEndPos.start.y) {
 
-        neighbors.forEach(tile => {
-          if (visited.some((e) => e.tile.x === tile.x && e.tile.y === tile.y) &&
-              !secondVisit.some(e => e.x === tile.x && e.y === tile.y)) {
+          let neighbors = this.claculateNeighbors(currentTile);
 
-            let cost = this.calculateCost(tile);
-            if (cheapest == null) {
-              cheapest = cost;
-              currentTile = tile;
-            } else {
-              if (cost.Gcost < cheapest.Gcost) {
-                cheapest = cost;
-                currentTile = tile;
+          neighbors.forEach(element => {
+            // Check if tile is in visited
+            if (visited.some(e => e.tile.x === element.x && e.tile.y === element.y) &&
+                !secondVisit.some(e => e.x === element.x && e.y === element.y)) {
+
+              let visitedElement = visited[visited.findIndex(e => e.tile.x === element.x && e.tile.y === element.y)];
+
+              if (cheapestRoute == null) {
+                cheapestRoute = visitedElement.cost;
+                currentTile = visitedElement.tile;
+              } else {
+                if (visitedElement.cost.Gcost < cheapestRoute.Gcost) {
+                  cheapestRoute = visitedElement.cost;
+                  currentTile = visitedElement.tile;
+                }
               }
             }
-          }
+          });
 
-          secondVisit.push(tile);
-        });
-
-        this.tiles[currentTile.y][currentTile.x].mark = true;
-
-        await this.sleep(10);
-      }
+          this.tiles[currentTile.y][currentTile.x].mark = true;
+          await this.sleep(10);
+        }
       
-      // Path found
+
+      
     },
 
-    calculateCost(tile) {
+    calculateCost(currentTile, tile, prevCost) {
       let startAndEndPos = this.getStartAndEndPos();
 
-      let Gcost = this.calculateDistance(startAndEndPos.start, tile);
+      let Gcost = this.calculateDistance(currentTile, tile) + prevCost.Gcost;
       let Hcost = this.calculateDistance(startAndEndPos.end, tile);
       let Fcost = Gcost + Hcost;
 
@@ -208,7 +215,7 @@ export default {
     },
 
     checkInBounds(tile) {
-      if (tile.x < 0 || tile.x > this.cols || tile.y < 0 || tile.y > this.rows)
+      if (tile.x < 0 || tile.x >= this.cols || tile.y < 0 || tile.y >= this.rows)
         return false;
       return true;
     },
@@ -240,8 +247,6 @@ export default {
     click(event) {
       let pos = this.getPosFromEvent(event);
       let tile = this.tiles[pos.y][pos.x];
-      let cost = this.calculateCost(pos, tile);
-      console.log(cost.Fcost + " " + cost.Hcost + " " + cost.Gcost);
       if (!tile.start && !tile.end) tile.wall = !tile.wall;
     },
 
@@ -274,6 +279,26 @@ export default {
 
     sleep(ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
+    },
+
+    mouseDown() {
+      this.mouseDownProp = true;
+    },
+
+    mouseUp() {
+      this.mouseDownProp = false;
+    },
+
+    mouseLeaveSVG() {
+      this.mouseDownProp = false;
+    },
+
+    hover(event) {
+      if (this.mouseDownProp) {
+        let pos = this.getPosFromEvent(event);
+        let tile = this.tiles[pos.y][pos.x];
+        tile.wall = !tile.wall;
+      }
     },
   },
 
