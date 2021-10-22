@@ -1,16 +1,17 @@
 <template>
   <svg
     width="100%"
-    height="1080"
     @mouseleave="mouseleaveSVG"
     @mousedown="mouseDown"
     @mouseup="mouseUp"
+    :style="{height: this.rows * 30 +'px'}"
   >
     <g v-for="(rows, y) in this.tiles" :key="rows">
       <g v-for="(tile, x) in rows" :key="tile">
         <rect
           :x="x * 30"
           :y="y * 30"
+          rx="5"
           width="30"
           height="30"
           stroke="#000"
@@ -20,7 +21,8 @@
           :yPos="y"
           @mousedown="click"
           @mouseover="hover"
-        />
+        >
+        </rect>
       </g>
     </g>
   </svg>

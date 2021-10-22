@@ -57,7 +57,9 @@ export default {
   margin: 0;
 }
 
-.nav ul {
+.nav {
+  display: flex;
+
   background: linear-gradient(-90deg, #b0e0e6, #4ca3dd);
   height: 60px;
 
@@ -66,21 +68,28 @@ export default {
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.57);
 
   margin-bottom: 0px;
-  z-index: 10;
+}
 
+.nav ul {
+  display: table;
   list-style-type: none;
+  padding: 0;
+  align-self: center;
+}
+
+.right {
+  justify-self: right;
+  margin-left: auto;
 }
 
 .nav ul li {
-  display: table;
-  border-spacing: 10px;
+  display: table-cell;
+  padding: 10px;
   height: 100%;
   width: fit-content;
-  float: left;
 }
 
 .nav ul li a {
-  display: table-cell;
   vertical-align: middle;
   text-decoration: none;
   color: white;
