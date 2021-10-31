@@ -7,7 +7,9 @@
       <li><a @click="AStar">A*</a></li>
     </ul>
     <ul class="right">
-      <li><a href="https://github.com/JoeyDeSmet/algorithm_visualizer">GitHub</a></li>
+      <li>
+        <a href="https://github.com/JoeyDeSmet/algorithm_visualizer">GitHub</a>
+      </li>
     </ul>
   </div>
 </template>
