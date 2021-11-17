@@ -93,8 +93,6 @@ export default {
           //* Path found
           var curr = currentNode;
 
-          console.log(OpenList);
-
           while (curr.parent != null) {
             curr.mark = true;
             curr = curr.parent;
@@ -111,17 +109,14 @@ export default {
         OpenList.splice(indexToRemove, 1);
         currentNode.closed = true;
 
-        console.log(OpenList.length)
+        console.log(OpenList.length);
 
         var neighbors = this.getNeighbors(currentNode);
 
         for (var n = 0; n < neighbors.length; n++) {
           var neighbor = this.tiles[neighbors[n].pos.y][neighbors[n].pos.x];
 
-          if (
-            neighbor.closed ||
-            neighbor.wall
-          ) {
+          if (neighbor.closed || neighbor.wall) {
             continue;
           }
 
@@ -130,7 +125,10 @@ export default {
             this.calculateDistance(currentNode.pos, neighbor.pos);
           var gScoreIsBest = false;
 
-          if (!OpenList.some(e => { return e.pos.x === neighbor.pos.x && e.pos.y === neighbor.pos.y})
+          if (
+            !OpenList.some((e) => {
+              return e.pos.x === neighbor.pos.x && e.pos.y === neighbor.pos.y;
+            })
           ) {
             gScoreIsBest = true;
             neighbor.h = this.calculateDistance(neighbor.pos, end.pos);
@@ -177,24 +175,24 @@ export default {
 
     getNeighbors(tile) {
       let positions = [
-      { x: tile.pos.x, y: tile.pos.y + 1 },
-      { x: tile.pos.x + 1, y: tile.pos.y + 1 },
-      { x: tile.pos.x + 1, y: tile.pos.y },
-      { x: tile.pos.x + 1, y: tile.pos.y - 1 },
-      { x: tile.pos.x, y: tile.pos.y - 1 },
-      { x: tile.pos.x - 1, y: tile.pos.y - 1 },
-      { x: tile.pos.x - 1, y: tile.pos.y },
-      { x: tile.pos.x - 1, y: tile.pos.y + 1 },
-      ]
+        { x: tile.pos.x, y: tile.pos.y + 1 },
+        { x: tile.pos.x + 1, y: tile.pos.y + 1 },
+        { x: tile.pos.x + 1, y: tile.pos.y },
+        { x: tile.pos.x + 1, y: tile.pos.y - 1 },
+        { x: tile.pos.x, y: tile.pos.y - 1 },
+        { x: tile.pos.x - 1, y: tile.pos.y - 1 },
+        { x: tile.pos.x - 1, y: tile.pos.y },
+        { x: tile.pos.x - 1, y: tile.pos.y + 1 },
+      ];
 
       var ret = [];
 
-      positions.forEach(position => {
+      positions.forEach((position) => {
         if (this.checkInBounds(position)) {
           ret.push(this.tiles[position.y][position.x]);
         }
-      })
-      
+      });
+
       return ret;
     },
 
