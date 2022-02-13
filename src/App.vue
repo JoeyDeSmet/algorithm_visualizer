@@ -1,8 +1,6 @@
 <template>
   <NavBar @page-change="this.ChangePage" />
-  <!-- <Home v-if="this.active_page == 'Home'" /> -->
-  <mine-sweeper></mine-sweeper>
-  <!-- <Test /> -->
+  <Home v-if="this.active_page == 'Home'" />
   <BubbleSort v-if="this.active_page == 'Bubble'" />
   <MergeSort v-if="this.active_page == 'Merge'" />
   <AStar v-if="this.active_page == 'AStar'" />
@@ -10,23 +8,19 @@
 
 <script>
 import BubbleSort from "./components/bubble_sort.vue";
-// import Home from "./components/home.vue";
+import Home from "./components/home.vue";
 import NavBar from "./components/NavBar.vue";
 import MergeSort from "./components/MergeSort.vue";
 import AStar from "./components/AStar.vue";
-import MineSweeper from "./components/MineSweeper.vue";
-// import Test from "./components/test.vue";
 
 export default {
   name: "App",
   components: {
     NavBar,
-    //Home,
+    Home,
     BubbleSort,
     MergeSort,
     AStar,
-    MineSweeper,
-    // Test,
   },
 
   data() {
